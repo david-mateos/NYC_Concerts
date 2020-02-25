@@ -8,6 +8,6 @@ A map of  your favorite artists' upcoming concerts. This repo uses the Songkick 
 Make sure to have Spotify, Songkick, and Mapbox tokens- they are all free. 
 
 Resulting map should look like this:
-![alt text](https://github.com/david-mateos/NYC_Concerts/branch/blob/master/resulting_map_preview.png?raw=true)
+![alt text](https://github.com/david-mateos/NYC_Concerts/blob/master/resulting_map_preview.png?raw=true)
 
 Note: NYC has a lot of shows, in the winter there were over 1700 shows! Pagination of Songkick data could take up 45 seconds depending on the max_date parameter
