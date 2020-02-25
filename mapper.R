@@ -1,14 +1,12 @@
-
 library(httr)
 library(tidyverse)
 library(stringi)
 library(plotly)
 
-setwd("/Users/davidmateos/Downloads/Concerts-In-My-Area/")
- 
-# get the metro id for NYC
+#setwd("/Users/davidmateos/Downloads/Concerts-In-My-Area/") point towards your csv
 api_key <<- Sys.getenv("SONGKICK_API_KEY") # your Songkick API key
 
+# get the metro id for NYC
 get_metroID <- function(query){
   
   formatted_query <- gsub(" ", "+", query)
@@ -17,7 +15,6 @@ get_metroID <- function(query){
   result <- content(GET(call, accept_json()))
   metroID <- result$resultsPage$results$location[[1]]$metroArea$id
   return(metroID)
-  
 }
 
 get_dataPage <- function(metroID, min_date, max_date, page){
@@ -44,7 +41,7 @@ get_totalEntries <- function(metroID, min_date, max_date){
 } 
 
 ## get all the concerts in NYC for the next 3 months
-metroID <- get_metroID("New York City")
+metroID <- get_metroID("New York City") # New York! feel free to change
 min_date <- Sys.Date()
 max_date <- min_date %m+% months(3)
 totalConcerts <- get_totalEntries(metroID, min_date, max_date)
@@ -84,11 +81,11 @@ all_concerts <- all_concerts %>%
                     drop_na() %>% 
                     mutate(fdate = format(as.Date(date), "%b %d %Y")) 
 
-# read in my top artists from Python script
+# read in top artists from Python script
 top_artists <- read.csv("top_artists.csv", header = F, stringsAsFactors = F)
 top_artists <- as_tibble(t(top_artists))
 names(top_artists) <- "artist"
-### clean artist names before cross checking
+### clean artist names before cross referencing
 top_artists$artist = stri_trans_general(str = top_artists$artist, id = "Latin-ASCII")
 
 # only map concerts from your favorite artists
@@ -96,7 +93,7 @@ my_concerts <- all_concerts %>%
                   inner_join(top_artists) %>% 
                   mutate(fdate = format(as.Date(date), "%b %d %Y")) 
   
-# plot it!              
+# plot it!  Note: Mapbox is free, API token required
 plot_mapbox(my_concerts, x = ~lng, y = ~lat, 
               sizec = 2,
               type = "scattermapbox",
@@ -110,4 +107,4 @@ plot_mapbox(my_concerts, x = ~lng, y = ~lat,
                                      lon = ~median(lng))
                        )
          ) %>%
-  config(mapboxAccessToken = Sys.getenv("MAPBOX_TOKEN")) # only do this once
+  config(mapboxAccessToken = Sys.getenv("MAPBOX_TOKEN")) # only do this once 
