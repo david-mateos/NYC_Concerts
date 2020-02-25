@@ -7,4 +7,4 @@ A map of  your favorite artists' upcoming concerts. This repo uses the Songkick 
 
 Make sure to have Spotify, Songkick, and Mapbox tokens- they are all free. 
 
-Note: NYC has a lot of shows, in the winter there were over 1700 shows! Pagination could take up 45 seconds
+Note: NYC has a lot of shows, in the winter there were over 1700 shows! Pagination of Songkick data could take up 45 seconds depending on the max_date parameter
