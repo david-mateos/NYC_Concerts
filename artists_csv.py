@@ -60,19 +60,16 @@ if token:
             
             artist_names.append(item['name']) 
 
-    artist_names = get_my_followed_artists() + artist_names
+    artist_names = get_my_followed_artists() + artist_names  #add artists you follow
     duplicates = set()
     for artist in artist_names:
         name = artist
-    
         if name not in duplicates:
             duplicates.add(name)      
 
     artist_names = duplicates
     
-    print(len(artist_names))
-    
-    # now write to a csv to read into R script
+    # now write a csv file to read into R script
     with open('top_artists.csv','w', newline='') as result_file:
         wr = csv.writer(result_file, delimiter=',')
         wr.writerow(list(artist_names))
