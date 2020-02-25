@@ -53,7 +53,6 @@ if token:
         
         top_artists.append(sp.current_user_top_artists(time_range=range, 
                                                        limit=50))
-
         for k, item in enumerate(top_artists[i]['items']):
             
             artist_names.append(item['name']) 
@@ -74,4 +73,3 @@ if token:
       
 else:
     print('Could not get token.')   
-
