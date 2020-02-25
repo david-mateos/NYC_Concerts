@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Feb 24 09:45:53 2020
-
-S1: Get all top artitsts
-S2: Supplement with some artists you are follwoing
-S3: Make into csv
+S1: Get all top artists
+S2: Supplement with some artists you are following
+S3: write unique names to a csv
 
 @author: davidmateos
 """
