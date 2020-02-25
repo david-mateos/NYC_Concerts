@@ -9,7 +9,7 @@ S3: Make into csv
 
 @author: davidmateos
 """
-import os
+#import os use to set env vars
 import spotipy
 import spotipy.util as util
 import csv
