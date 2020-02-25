@@ -4,7 +4,7 @@
 Created on Mon Feb 24 09:45:53 2020
 
 S1: Get all top artitsts
-S2: Supplement with some related artists
+S2: Supplement with some artists you are follwoing
 S3: Make into csv
 
 @author: davidmateos
@@ -14,15 +14,13 @@ import spotipy
 import spotipy.util as util
 import csv
 
-USERNAME= '1297034112' 
+USERNAME= '' # the targeted user
 SCOPE= 'user-top-read, user-follow-read' 
-CLIENT_ID='219ee35238aa44cbbc6e3f303a799002'
-CLIENT_SECRET= 'd6ce818e199440dda66d685bb1fd6c8c'
+
 REDIRECT_URI= 'https://localhost:8080'
 
-os.environ['SPOTIPY_CLIENT_ID'] = '219ee35238aa44cbbc6e3f303a799002'
-os.environ['SPOTIPY_CLIENT_SECRET'] = 'd6ce818e199440dda66d685bb1fd6c8c'
-
+os.environ['SPOTIPY_CLIENT_ID'] = '' # make sure to set these with your own
+os.environ['SPOTIPY_CLIENT_SECRET'] = ''
 
 util.prompt_for_user_token(username=USERNAME,
                            scope=SCOPE,
@@ -74,11 +72,11 @@ if token:
     
     print(len(artist_names))
     
-    '''
+    # now write to a csv to read into R script
     with open('top_artists.csv','w', newline='') as result_file:
         wr = csv.writer(result_file, delimiter=',')
         wr.writerow(list(artist_names))
-      '''
+      
 else:
     print('Could not get token.')   
 
